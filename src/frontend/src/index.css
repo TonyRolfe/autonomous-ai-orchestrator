@@ -7,3 +7,9 @@ html, body, #root {
   margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
 }
+
+@layer utilities {
+  .pb-safe-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}
