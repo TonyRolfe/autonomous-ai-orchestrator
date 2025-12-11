@@ -31,7 +31,7 @@ const ChatInterface: React.FC = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = () => {
+    const handleSend = async () => {
   if (!input.trim()) return;
 
   const userMsg: Message = {
@@ -40,16 +40,50 @@ const ChatInterface: React.FC = () => {
     sender: 'user',
   };
   setMessages((prev) => [...prev, userMsg]);
+
+  const workingMsg: Message = {
+    id: (Date.now() + 1).toString(),
+    text: 'Your Agentic AI Team is working on your request. Please wait...',
+    sender: 'ai',
+  };
+  setMessages((prev) => [...prev, workingMsg]);
   setInput('');
 
-  setMessages((prev) => [
-    ...prev,
-    {
-      id: (Date.now() + 1).toString(),
-      text: 'Your Agentic AI Team is working on your request. Please wait...',
-      sender: 'ai',
-    },
-  ]);
+  try {
+    const response = await fetch('/api/create-repo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ epic: input }),
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === workingMsg.id
+            ? { ...msg, text: `Success! Your private repository is ready:\n${data.repo_url}` }
+            : msg
+        )
+      );
+    } else {
+      setMessages((prev) =>
+        prev.map((msg) =>
+          msg.id === workingMsg.id
+            ? { ...msg, text: `Error: ${data.error || 'Failed to create repository'}` }
+            : msg
+        )
+      );
+    }
+  } catch (err) {
+    setMessages((prev) =>
+      prev.map((msg) =>
+        msg.id === workingMsg.id
+          ? { ...msg, text: 'Network error — is the backend running?' }
+          : msg
+      )
+    );
+  }
 };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
