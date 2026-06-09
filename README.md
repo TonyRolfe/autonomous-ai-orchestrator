@@ -1,35 +1,20 @@
 # Autonomous AI Orchestrator
 
-Fully autonomous code generation → test → deploy pipeline powered by AI agents. The user once fully onboarded will be able to provide the web interface with an Epic or a complete Project Requirements document and the Agentic system will develop, test and deploy a Enterprise Grade application.
+**Fully autonomous code generation → test → deploy pipeline powered by AI agents.**
 
----
-## Tech Stack
-- Backend: Flask + LangChain/CrewAI
-- Frontend: React 18 + TypeScript + Vite + Tailwind CSS
-- LLM: Azure OpenAI or IBM watsonx (user-selectable)
-- Database: PostgreSQL + SQLAlchemy (only when required)
-- Testing: pytest (100% coverage) + Jest/RTL (frontend)
-- CI: GitHub Actions (mypy, ruff, black, isort, bandit, safety)
-- Deployment: Docker + docker-compose
+User provides requirements via web UI; system autonomously builds, tests, and deploys full-stack apps.
 
----
-## Quick Start (Development)
+## Features
+- Multi-agent AI orchestration (CrewAI)
+- Full lifecycle automation
+- Multi-LLM support
+- Docker deployment
 
-```bash
-# Start both services
-docker compose up --build
+## Quick Start
+See docker-compose.yml
 
-# Backend runs on http://localhost:5000
-# Frontend (Vite) runs on http://localhost:3000 → proxied to Flask in dev
-```
+## Daily Log - 2026-06-09
+- Polished README
+- Planning core features implementation
 
----
-## Required Secrets (see `.env.example`)
-- `GITHUB_TOKEN` - PAT with `repo` scope.
-- Azure OpenAI (for CoPilot integration) or IBM watsonx credentials (one provider only)
-
----
-## Project Rules (Non-Negotiable)
-- 100% test coverage (line + branch)
-- Auto-merge only when CI is 100% green
-- Clean code / SOLID / KISS / DRY enforced on every line
+Next steps: Flesh out backend services for agent coordination.
