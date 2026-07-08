@@ -1,35 +1,18 @@
 # Autonomous AI Orchestrator
 
-Fully autonomous code generation → test → deploy pipeline powered by AI agents. The user once fully onboarded will be able to provide the web interface with an Epic or a complete Project Requirements document and the Agentic system will develop, test and deploy a Enterprise Grade application.
+**Vision:** A fully autonomous AI-powered system that takes high-level requirements and delivers complete, production-ready applications.
 
----
-## Tech Stack
-- Backend: Flask + LangChain/CrewAI
-- Frontend: React 18 + TypeScript + Vite + Tailwind CSS
-- LLM: Azure OpenAI or IBM watsonx (user-selectable)
-- Database: PostgreSQL + SQLAlchemy (only when required)
-- Testing: pytest (100% coverage) + Jest/RTL (frontend)
-- CI: GitHub Actions (mypy, ruff, black, isort, bandit, safety)
-- Deployment: Docker + docker-compose
+## Features
+- AI Agent Orchestration for code gen, testing, deployment
+- Multi-LLM support
+- Dockerized full-stack
+- CI/CD with strict quality gates
 
----
-## Quick Start (Development)
+## Roadmap
+1. Polish docs ✓
+2. Core orchestration engine
+3. UI for requirements input
+4. Testing & Deploy
 
-```bash
-# Start both services
-docker compose up --build
-
-# Backend runs on http://localhost:5000
-# Frontend (Vite) runs on http://localhost:3000 → proxied to Flask in dev
-```
-
----
-## Required Secrets (see `.env.example`)
-- `GITHUB_TOKEN` - PAT with `repo` scope.
-- Azure OpenAI (for CoPilot integration) or IBM watsonx credentials (one provider only)
-
----
-## Project Rules (Non-Negotiable)
-- 100% test coverage (line + branch)
-- Auto-merge only when CI is 100% green
-- Clean code / SOLID / KISS / DRY enforced on every line
+## Daily Log
+See [daily_log.md](daily_log.md) for ongoing progress.
