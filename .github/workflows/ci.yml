@@ -23,16 +23,16 @@ jobs:
           pip install -r requirements.txt
 
       - name: Lint with ruff
-        run: ruff check src tests || true
+        run: ruff check src tests
 
       - name: Format check with black
-        run: black --check src tests || true
+        run: black --check src tests
 
       - name: Type check with mypy
-        run: mypy src/backend || true
+        run: mypy src/backend --ignore-missing-imports
 
       - name: Run tests with coverage
         run: |
-          PYTHONPATH=. pytest tests/ -v --cov=src/backend --cov-report=term-missing || true
+          PYTHONPATH=. pytest tests/ -v --cov=src/backend --cov-report=term-missing --cov-fail-under=80
         env:
           FLASK_ENV: testing

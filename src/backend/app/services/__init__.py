@@ -1,5 +1,4 @@
-"""Business logic and agent services.
+"""Services package for AI agents and business logic.
 
-Placeholder package for future LangChain / CrewAI agent orchestration,
-GitHub integration, and domain services.
+Placeholder for future CrewAI / LangChain agent orchestration services.
 """
