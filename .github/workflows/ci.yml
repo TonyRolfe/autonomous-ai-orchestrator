@@ -33,6 +33,6 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          PYTHONPATH=. pytest tests/ -v --cov=src/backend --cov-report=term-missing --cov-fail-under=80
+          PYTHONPATH=. pytest tests/ -v --cov=src/backend --cov-report=term-missing --cov-fail-under=90
         env:
           FLASK_ENV: testing
