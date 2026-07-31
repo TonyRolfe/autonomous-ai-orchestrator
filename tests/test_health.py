@@ -64,4 +64,6 @@ def test_test_config_overrides():
 
 def test_services_package_exists():
     assert services_doc is not None
-    assert "agent" in services_doc.lower() or "CrewAI" in services_doc or "LangChain" in services_doc
+    assert (
+        "agent" in services_doc.lower() or "CrewAI" in services_doc or "LangChain" in services_doc
+    )
