@@ -5,7 +5,9 @@ WORKDIR /app
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on
+    PIP_DISABLE_PIP_VERSION_CHECK=on \
+    FLASK_APP=src.backend.app.main:app \
+    PYTHONPATH=/app
 
 COPY requirements.txt .
 RUN pip install --upgrade pip && \

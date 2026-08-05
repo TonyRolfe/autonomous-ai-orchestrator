@@ -1,0 +1,15 @@
+Flask>=3.1,<4
+python-dotenv>=1.0,<2
+GitPython>=3.1,<4
+langchain>=0.1,<0.3
+crewai>=0.30,<0.40
+pydantic>=2.8,<3
+SQLAlchemy>=2.0,<3
+pytest>=8.0,<9
+pytest-cov>=5.0,<6
+mypy>=1.11,<2
+ruff>=0.6,<1
+black>=24.0,<25
+isort>=5.13,<6
+bandit>=1.7,<2
+safety>=3.0,<4
