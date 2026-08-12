@@ -67,3 +67,12 @@ def test_services_package_exists():
     assert (
         "agent" in services_doc.lower() or "CrewAI" in services_doc or "LangChain" in services_doc
     )
+
+
+def test_main_module_exposes_app():
+    """Import main entry point and verify the Flask app is created."""
+    from src.backend.app import main as main_module
+
+    assert hasattr(main_module, "app")
+    assert main_module.app is not None
+    assert main_module.app.name == "src.backend.app"
