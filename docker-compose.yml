@@ -12,8 +12,18 @@ services:
     volumes:
       - ./src/backend:/app/src/backend
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    environment:
+      - FLASK_APP=src.backend.app.main:app
+      - PYTHONPATH=/app
     command: flask run --host=0.0.0.0 --port=5000
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   frontend:
     build:
@@ -27,6 +37,9 @@ services:
       - ./src/frontend:/app/src/frontend
     environment:
       - VITE_API_BASE_URL=http://localhost:5000
+    depends_on:
+      backend:
+        condition: service_healthy
 
   postgres:
     image: postgres:16-alpine
@@ -38,6 +51,12 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U orchestrator -d orchestrator_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
 
 volumes:
   postgres_data:
