@@ -54,12 +54,15 @@ def test_config_defaults():
     assert Config.BASE_DIR is not None
     assert Config.DEBUG is False or Config.DEBUG is True
     assert Config.AZURE_OPENAI_DEPLOYMENT == "gpt-4o" or Config.AZURE_OPENAI_DEPLOYMENT is not None
+    assert Config.SQLALCHEMY_DATABASE_URI is not None
+    assert Config.SQLALCHEMY_TRACK_MODIFICATIONS is False
 
 
 def test_test_config_overrides():
     assert TestConfig.TESTING is True
     assert TestConfig.SECRET_KEY == "test-secret"
     assert TestConfig.DEBUG is False
+    assert TestConfig.SQLALCHEMY_DATABASE_URI == "sqlite:///:memory:"
 
 
 def test_services_package_exists():
