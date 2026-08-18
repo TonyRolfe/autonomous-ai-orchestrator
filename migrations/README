@@ -1,0 +1,9 @@
+Generic single-database configuration for Autonomous AI Orchestrator.
+
+Generate a revision after model changes:
+
+    alembic revision --autogenerate -m "describe change"
+
+Apply migrations:
+
+    alembic upgrade head
